@@ -19,6 +19,8 @@ private:
     QListWidget *m_numberListWidget;
     QPushButton *m_lotteryButton;
     QLabel *m_label;
+
+    QVector<QString> phoneNumbers;
 };
 
 #endif // WIDGET_H
