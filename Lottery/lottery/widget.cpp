@@ -3,12 +3,12 @@
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
-    //创建控件
+    //鍒涘缓鎺т欢
     m_label = new QLabel("phone-number list");
     m_lotteryButton = new QPushButton("enter lottery");
     m_numberListWidget = new QListWidget();
 
-    //布局管理
+    //甯冨眬绠＄悊
     QVBoxLayout *layout = new QVBoxLayout(this);
     QHBoxLayout *actionLayout = new QHBoxLayout();
     actionLayout->addWidget(m_label);
@@ -20,13 +20,13 @@ Widget::Widget(QWidget *parent)
 
 
 
-    //读取数据
+    //璇诲叆鏁版嵁
     phoneNumbers.push_back("15021297868");
     phoneNumbers.push_back("13584055449");
     phoneNumbers.push_back("15005154907");
     phoneNumbers.push_back("15050569614");
 
-    //使用迭代器遍历QVector
+    //浣跨敤杩唬鍣ㄩ亶鍘哘Vector
     QVector<QString>::iterator p;
     for(p=phoneNumbers.begin(); p < phoneNumbers.end(); p++)
     {
