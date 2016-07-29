@@ -16,11 +16,14 @@ class LotteryWidget : public QDialog
 public:
      LotteryWidget(QStringList *numbers,QWidget *parent = 0);
      ~LotteryWidget(){}
+
+     bool saveResult();
 signals:
 
 public slots:
     void onTimeout();
     void onClick();
+    void closeEvent(QCloseEvent *event);
 
 private:
     //窗口控件

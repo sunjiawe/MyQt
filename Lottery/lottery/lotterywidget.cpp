@@ -2,6 +2,12 @@
 #include <QIcon>
 #include <QSize>
 #include <QFont>
+#include <QFile>
+#include <QTextStream>
+#include <QDebug>
+#include <QCloseEvent>
+#include <QDateTime>
+
 
 LotteryWidget::LotteryWidget(QStringList *numbers,QWidget *parent)
     : QDialog(parent),isPressed(false),m_numbers(numbers),current_Index(0)
@@ -67,6 +73,35 @@ void LotteryWidget::onClick()
 
 }
 
+//记录抽奖结果
+bool LotteryWidget::saveResult()
+{
+    QFile file("log.txt");
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append))
+    {
+        QTextStream ts(&file);
+
+        //获取当前系统时间，用于填写记录文件
+        QDateTime current_date_time = QDateTime::currentDateTime();
+        QString current_date = current_date_time.toString("yyyy-MM-dd hh:mm:ss ddd");
+        ts << current_date <<" lottery log:" << endl;
+
+        //把每一项结果记录到文件中
+        for(int i=0; i < resultList->count(); i++)
+        {
+            ts << resultList->item(i)->text() << endl;
+        }
+
+        ts << endl <<endl;
+        file.close();
+    }
+    else
+    {
+        qDebug() << "can't open the logfile.error-"<< file.errorString();
+        return false;
+    }
+    return true;
+}
 
 void LotteryWidget::onTimeout()
 {
@@ -77,3 +112,14 @@ void LotteryWidget::onTimeout()
     }
     m_phoneNumberLabel->setText(*p);
 }
+
+
+
+void LotteryWidget::closeEvent(QCloseEvent *event)
+  {
+    if (resultList->count() != 0)
+    {
+        saveResult();
+    }
+    event->accept();
+  }
