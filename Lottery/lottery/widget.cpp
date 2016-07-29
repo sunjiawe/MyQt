@@ -1,4 +1,5 @@
 #include "widget.h"
+#include "lotterywidget.h"
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -18,7 +19,7 @@ Widget::Widget(QWidget *parent)
     layout->addLayout(actionLayout);
     layout->addWidget(m_numberListWidget);
 
-
+    connect(m_lotteryButton,SIGNAL(clicked()),this,SLOT(onClick()));
 
     //读入数据
     phoneNumbers.push_back("15021297868");
@@ -39,3 +40,32 @@ Widget::~Widget()
 {
 
 }
+
+
+
+int Widget::onClick()
+{
+    QStringList numbers;
+    QVector<QString>::iterator p;
+    for(p=phoneNumbers.begin(); p < phoneNumbers.end(); p++)
+    {
+        numbers.append(*p);
+    }
+
+    //隐藏主界面
+    this->hide();
+
+
+    //进入抽奖界面
+    LotteryWidget lotteryWig(&numbers,this);
+    lotteryWig.exec();
+
+    //恢复主界面
+    this->showNormal();
+    this->activateWindow();
+
+    return 0;
+}
+
+
+

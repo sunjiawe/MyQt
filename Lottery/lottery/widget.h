@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 
+
 class Widget : public QWidget
 {
     Q_OBJECT
@@ -15,11 +16,15 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = 0);
     ~Widget();
+
+protected slots:
+    int onClick();
+
+
 private:
     QListWidget *m_numberListWidget;
     QPushButton *m_lotteryButton;
     QLabel *m_label;
-
     QVector<QString> phoneNumbers;
 };
 
