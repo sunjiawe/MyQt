@@ -42,7 +42,11 @@ LotteryWidget::LotteryWidget(QStringList *numbers,QWidget *parent)
 
 void LotteryWidget::onClick()
 {
-    //if( 全抽完了)  return 0;
+    if( m_numbers->isEmpty())
+    {
+        m_phoneNumberLabel->setText("List is empty.");
+        return;
+    }
 
     //开始
     if(isPressed == false)
