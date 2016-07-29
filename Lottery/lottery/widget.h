@@ -22,9 +22,11 @@ protected slots:
 
 
 private:
+    //窗口控件
     QListWidget *m_numberListWidget;
     QPushButton *m_lotteryButton;
     QLabel *m_label;
+
     QVector<QString> phoneNumbers;
 };
 

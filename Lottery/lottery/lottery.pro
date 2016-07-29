@@ -18,3 +18,6 @@ SOURCES += main.cpp \
 
 HEADERS  += widget.h \
     lotterywidget.h
+
+RESOURCES += \
+    icon.qrc
