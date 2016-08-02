@@ -10,6 +10,7 @@
 #include <QHBoxLayout>
 #include <QTimer>
 
+
 class LotteryWidget : public QDialog
 {
     Q_OBJECT

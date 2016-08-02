@@ -22,17 +22,16 @@ Widget::Widget(QWidget *parent)
     connect(m_lotteryButton,SIGNAL(clicked()),this,SLOT(onClick()));
 
     //读入数据
-    phoneNumbers.push_back("15021297868");
-    phoneNumbers.push_back("13584055449");
-    phoneNumbers.push_back("15050569614");
-    phoneNumbers.push_back("15005154907");
-    phoneNumbers.push_back("17778543214");
-    phoneNumbers.push_back("13524896482");
-    phoneNumbers.push_back("19504632458");
-    phoneNumbers.push_back("84095463217");
-    phoneNumbers.push_back("15069874352");
-    phoneNumbers.push_back("12654138524");
-    phoneNumbers.push_back("15965478512");
+    dataLoader.load(DataLoader::Json);
+    dataLoader.output(phoneNumbers);
+
+//    phoneNumbers.push_back("17778543214");
+//    phoneNumbers.push_back("13524896482");
+//    phoneNumbers.push_back("19504632458");
+//    phoneNumbers.push_back("84095463217");
+//    phoneNumbers.push_back("15069874352");
+//    phoneNumbers.push_back("12654138524");
+//    phoneNumbers.push_back("15965478512");
 
     //使用迭代器遍历QVector
     QVector<QString>::iterator p;

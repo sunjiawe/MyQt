@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     widget.cpp \
-    lotterywidget.cpp
+    lotterywidget.cpp \
+    dataloader.cpp
 
 HEADERS  += widget.h \
-    lotterywidget.h
+    lotterywidget.h \
+    dataloader.h
 
 RESOURCES += \
     icon.qrc

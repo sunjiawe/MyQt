@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include "dataloader.h"
 
 
 class Widget : public QWidget
@@ -27,6 +28,7 @@ private:
     QPushButton *m_lotteryButton;
     QLabel *m_label;
 
+    DataLoader  dataLoader;
     QVector<QString> phoneNumbers;
 };
 
