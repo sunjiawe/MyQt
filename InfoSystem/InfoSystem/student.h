@@ -10,11 +10,10 @@ public:
      Student():id(0){}
      ~Student(){}
 
-private:
+public:
     int id;
     QString name;
     QString cellPhone;
-    friend class DataSource;
 };
 
 typedef QList<Student> StudentList;

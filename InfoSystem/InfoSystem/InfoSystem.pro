@@ -14,10 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         widget.cpp \
-    datasource.cpp
+    datasource.cpp \
+    dialog.cpp
 
 HEADERS  += widget.h \
     student.h \
-    datasource.h
+    datasource.h \
+    dialog.h
 
-FORMS    += widget.ui
+FORMS    += widget.ui \
+    dialog.ui
