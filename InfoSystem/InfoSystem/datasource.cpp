@@ -2,6 +2,12 @@
 #include <QDebug>
 
 DataSource::DataSource()
+    :m_fileName("info.bin")
+{
+
+}
+
+DataSource::~DataSource()
 {
 
 }
@@ -9,7 +15,7 @@ DataSource::DataSource()
 int DataSource::load()
 {
     QFile *file = new QFile(m_fileName);
-    if ( file->open(QFile::WriteOnly))
+    if ( file->open(QFile::ReadOnly))
     {
         m_list.clear();
 
@@ -35,7 +41,7 @@ int DataSource::load()
 int DataSource::save()
 {
     QFile *file = new QFile(m_fileName);
-    if ( file->open(QFile::ReadOnly))
+    if ( file->open(QFile::WriteOnly))
     {
         for(StudentList::iterator iter = m_list.begin();
             iter != m_list.end(); iter++)
@@ -101,7 +107,7 @@ Student* DataSource::find(int id)
 }
 
 //第一版只做按姓名查找，后面会添加按学号、按号码等其他匹配方式
-void DataSource::match(const char* name,StudentList& list)
+void DataSource::match(QString name,StudentList& list)
 {
     for(int i=0; i<m_list.size(); i++)
     {

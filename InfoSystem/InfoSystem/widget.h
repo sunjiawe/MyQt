@@ -2,6 +2,8 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include "student.h"
+#include <datasource.h>
 
 namespace Ui {
 class Widget;
@@ -15,8 +17,17 @@ public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
 
+private slots:
+    int onAdd();
+    int onRemove();
+    int onFilterChanged();
+
 private:
-    Ui::Widget *ui;
+    void display(Student& student);
+    void display(StudentList& list);
+
+    Ui::Widget *widget_ui;
+    DataSource m_dataSource;
 };
 
 #endif // WIDGET_H

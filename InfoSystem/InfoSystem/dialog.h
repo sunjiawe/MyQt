@@ -22,7 +22,7 @@ private slots:
 
 
 private:
-    Ui::Dialog *ui;
+    Ui::Dialog *dialog_ui;
     Student* m_student;
 };
 

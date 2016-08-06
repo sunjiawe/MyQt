@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Widget</class>
- <widget class="QWidget" name="Widget" >
-  <property name="geometry" >
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,12 +10,78 @@
     <height>300</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Widget</string>
   </property>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>10</y>
+     <width>361</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="btnAdd">
+      <property name="text">
+       <string>增加</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnRemove">
+      <property name="text">
+       <string>删除</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="ctlFilter"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QTreeWidget" name="treeWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>90</y>
+     <width>341</width>
+     <height>192</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>学号</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>姓名</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>手机号</string>
+    </property>
+   </column>
+  </widget>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
