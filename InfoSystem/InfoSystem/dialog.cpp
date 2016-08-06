@@ -14,7 +14,7 @@ Dialog::Dialog(Student* student,QWidget *parent)
     QValidator *v1 = new QRegExpValidator(QRegExp("^\\d{11}$"), this);
     dialog_ui->ctlCellPhone->setValidator(v1);
 
-    QValidator *v2 = new QRegExpValidator(QRegExp("^\\d{6}$"), this);
+    QValidator *v2 = new QRegExpValidator(QRegExp("^\\d{9}$"), this);
     dialog_ui->ctlId->setValidator(v2);
 }
 

@@ -14,6 +14,7 @@ public:
     int id;
     QString name;
     QString cellPhone;
+
 };
 
 typedef QList<Student> StudentList;

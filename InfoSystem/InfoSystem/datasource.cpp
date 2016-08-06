@@ -1,8 +1,8 @@
 #include "datasource.h"
 #include <QDebug>
+#include <stdio.h>
 
 DataSource::DataSource()
-    :m_fileName("info.bin")
 {
 
 }
@@ -14,8 +14,8 @@ DataSource::~DataSource()
 
 int DataSource::load()
 {
-    QFile *file = new QFile(m_fileName);
-    if ( file->open(QFile::ReadOnly))
+    QFile *file = new QFile("local.data");
+    if ( file->open(QFile::ReadWrite))
     {
         m_list.clear();
 
@@ -23,9 +23,8 @@ int DataSource::load()
         {
             Student student;
             file->read((char*)&student,sizeof(Student));
-            m_list.push_back(student);
+            m_list.append(student);
         }
-
 
         file->close();
     }
@@ -36,12 +35,13 @@ int DataSource::load()
         file = 0;
     }
     return 0;
+
 }
 
 int DataSource::save()
 {
-    QFile *file = new QFile(m_fileName);
-    if ( file->open(QFile::WriteOnly))
+    QFile *file = new QFile("local.data");
+    if ( file->open(QFile::ReadWrite))
     {
         for(StudentList::iterator iter = m_list.begin();
             iter != m_list.end(); iter++)
@@ -63,34 +63,46 @@ int DataSource::save()
 
 int DataSource::add(const Student& student)
 {
-    bool isMore = false;
-    for(int i=0; i<m_list.size(); i++)
-    {
-        if(m_list[i].name == student.name)
-        {
-            isMore = true;
-            break;
-        }
-    }
+//    bool isMore = false;
+//    for(int i=0; i<m_list.size(); i++)
+//    {
+//        if(m_list[i].name == student.name)
+//        {
+//            isMore = true;
+//            break;
+//        }
+//    }
+//
+//    if(!isMore)
+//    {
+//        m_list.append(student);
+//    }
 
-    if(!isMore)
-    {
-        m_list.append(student);
-    }
+    m_list.push_back(student);
     return 0;
 }
 
 
 void DataSource::remove(int id)
 {
-    for(int i=0; i<m_list.size(); i++)
-    {
-        if(m_list[i].id == id)
+//    for(int i=0; i<m_list.size(); i++)
+//    {
+//        if(m_list[i].id == id)
+//        {
+//            m_list.removeAt(i);
+//            break;
+//        }
+//    }
+    for(StudentList::iterator iter = m_list.begin();
+            iter != m_list.end(); iter ++)
         {
-            m_list.removeAt(i);
-            break;
+            Student& student = *iter;
+            if(student.id == id)
+            {
+                m_list.erase(iter);
+                break;
+            }
         }
-    }
 
 }
 
