@@ -1,4 +1,5 @@
 #include "datasource.h"
+#include <QDebug>
 
 DataSource::DataSource()
 {
@@ -7,13 +8,50 @@ DataSource::DataSource()
 
 int DataSource::load()
 {
+    QFile *file = new QFile(m_fileName);
+    if ( file->open(QFile::WriteOnly))
+    {
+        m_list.clear();
 
+        while(!file->atEnd())
+        {
+            Student student;
+            file->read((char*)&student,sizeof(Student));
+            m_list.push_back(student);
+        }
+
+
+        file->close();
+    }
+    else
+    {
+        qDebug() << "open file error-" << file->errorString();
+        delete file;
+        file = 0;
+    }
     return 0;
 }
 
 int DataSource::save()
 {
+    QFile *file = new QFile(m_fileName);
+    if ( file->open(QFile::ReadOnly))
+    {
+        for(StudentList::iterator iter = m_list.begin();
+            iter != m_list.end(); iter++)
+        {
+            Student student = *iter;
+            file->write((char*)&student,sizeof(Student));
+        }
 
+        file->close();
+    }
+    else
+    {
+        qDebug() << "open file error-" << file->errorString();
+        delete file;
+        file = 0;
+    }
     return 0;
 }
 
