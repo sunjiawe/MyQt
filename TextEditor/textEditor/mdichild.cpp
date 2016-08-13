@@ -13,9 +13,9 @@ void MdiChild::newFile()
     static int sequenceNumber = 1;
     isUntitled = true;
 
-    curFile = tr("未命名文档%1.txt").arg(sequenceNumber++);
+    curFile = QString::fromLocal8Bit("未命名文档%1.txt").arg(sequenceNumber++);
 
-    setWindowTitle(curFile +"[*]" + tr(" - 多文档编辑器"));
+    setWindowTitle(curFile +"[*]" + QString::fromLocal8Bit(" - 多文档编辑器"));
     connect(document(),SIGNAL(contentsChanged()),this,SLOT(documentWasModified()));
 }
 
@@ -26,8 +26,8 @@ bool MdiChild::loadFile(const QString &fileName)
     if( !file.open(QFile::ReadOnly | QFile::Text))
     {
         //qDebug() << "open file failed." << endl;
-        QMessageBox::warning(this,tr("多文档编辑器"),
-                             tr("无法读取文件&1:\n%2.")
+        QMessageBox::warning(this,QString::fromLocal8Bit("多文档编辑器"),
+                             QString::fromLocal8Bit("无法读取文件&1:\n%2.")
                              .arg(fileName).arg(file.errorString()));
         return false;
     }
@@ -90,7 +90,7 @@ bool MdiChild::save()
 
 bool MdiChild::saveAs()
 {
-    QString fileName = QFileDialog::getSaveFileName(this,tr("另存为"),curFile);
+    QString fileName = QFileDialog::getSaveFileName(this,QString::fromLocal8Bit("另存为"),curFile);
 
     if(fileName.isEmpty())
     {
@@ -109,8 +109,8 @@ bool MdiChild::saveFile(const QString &fileName)
     if( !file.open(QFile::WriteOnly | QFile::Text))
     {
         //qDebug() << "open file failed." << endl;
-        QMessageBox::warning(this,tr("多文档编辑器"),
-                             tr("无法写入文件&1:\n%2.")
+        QMessageBox::warning(this,QString::fromLocal8Bit("多文档编辑器"),
+                             QString::fromLocal8Bit("无法写入文件&1:\n%2.")
                              .arg(fileName).arg(file.errorString()));
         return false;
     }
@@ -143,15 +143,15 @@ bool MdiChild::mabeSave()
     if(document()->isModified())
     {
         QMessageBox box;
-        box.setWindowTitle(tr("多文档编辑器"));
-        box.setText(tr("是否保存对“%1”的更改?")
+        box.setWindowTitle(QString::fromLocal8Bit("多文档编辑器"));
+        box.setText(QString::fromLocal8Bit("是否保存对“%1”的更改?")
                     .arg(userFriendlyCurrentFile()));
         box.setIcon(QMessageBox::Warning);
 
-        QPushButton *yesBtn = box.addButton(tr("是"),QMessageBox::YesRole);
-        box.addButton(tr("否"),QMessageBox::NoRole);
+        QPushButton *yesBtn = box.addButton(QString::fromLocal8Bit("是"),QMessageBox::YesRole);
+        box.addButton(QString::fromLocal8Bit("否"),QMessageBox::NoRole);
 
-        QPushButton *cancelBtn = box.addButton(tr("取消"),QMessageBox::RejectRole);
+        QPushButton *cancelBtn = box.addButton(QString::fromLocal8Bit("取消"),QMessageBox::RejectRole);
 
         //弹出对话框
         box.exec();

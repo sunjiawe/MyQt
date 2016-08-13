@@ -10,6 +10,7 @@
 #include <QPushButton>
 #include <QFileDialog>
 #include <QCloseEvent>
+#include <QString>
 
 class MdiChild : public QTextEdit
 {
