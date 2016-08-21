@@ -1,5 +1,6 @@
 #include "dialog.h"
 #include "ui_dialog.h"
+#include <GBK.h>
 
 Dialog::Dialog(Student* student,QWidget *parent)
     :QDialog(parent),
@@ -25,9 +26,11 @@ Dialog::~Dialog()
 
 int Dialog::onBtnOK()
 {
-    m_student->name = dialog_ui->ctlName->text();
     m_student->id = dialog_ui->ctlId->text().toInt();
-    m_student->cellPhone = dialog_ui->ctlCellPhone->text();
+    string text = GBK::FromUnicode(dialog_ui->ctlName->text());
+    strcpy(m_student->name,text.c_str());
+    text = GBK::FromUnicode(dialog_ui->ctlCellPhone->text());
+    strcpy(m_student->cellPhone,text.c_str());
 
     //¹Ø±Õ¶Ô»°¿ò
     accept();

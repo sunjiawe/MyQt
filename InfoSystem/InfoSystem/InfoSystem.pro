@@ -20,7 +20,8 @@ SOURCES += main.cpp\
 HEADERS  += widget.h \
     student.h \
     datasource.h \
-    dialog.h
+    dialog.h \
+    GBK.h
 
 FORMS    += widget.ui \
     dialog.ui

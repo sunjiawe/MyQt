@@ -1,6 +1,8 @@
 #include "datasource.h"
 #include <QDebug>
 #include <stdio.h>
+#include <string.h>
+
 
 DataSource::DataSource()
 {
@@ -24,6 +26,7 @@ int DataSource::load()
             Student student;
             file->read((char*)&student,sizeof(Student));
             m_list.append(student);
+            //m_list.push_back(student);
         }
 
         file->close();
@@ -119,11 +122,12 @@ Student* DataSource::find(int id)
 }
 
 //第一版只做按姓名查找，后面会添加按学号、按号码等其他匹配方式
-void DataSource::match(QString name,StudentList& list)
+void DataSource::match(const char* name,StudentList& list)
 {
     for(int i=0; i<m_list.size(); i++)
     {
-        if(m_list[i].name == name)
+        //if(m_list[i].name == name)
+        if(strstr(m_list[i].name,name))
         {
             list.append(m_list[i]);
         }

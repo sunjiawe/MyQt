@@ -1,6 +1,7 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include <dialog.h>
+#include <GBK.h>
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -63,13 +64,14 @@ int Widget::onRemove()
 
 int Widget::onFilterChanged()
 {
-    QString filter = widget_ui->ctlFilter->text().trimmed();
+    //QString filter = widget_ui->ctlFilter->text().trimmed();
+    string filter = GBK::FromUnicode(widget_ui->ctlFilter->text().trimmed());
 
     if(filter.length() > 0)
     {
         // ²éÕÒÆ¥Åä
         StudentList list;
-        m_dataSource.match(filter, list);
+        m_dataSource.match(filter.c_str(), list);
 
         // ÏÔÊ¾Æ¥ÅäµÄ¼ÇÂ¼
         widget_ui->treeWidget->clear();

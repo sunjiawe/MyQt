@@ -12,8 +12,12 @@ public:
 
 public:
     int id;
-    QString name;
-    QString cellPhone;
+    //QString name;
+    //QString cellPhone;
+    char name[32];
+    char cellPhone[12];
+
+
 
 };
 
